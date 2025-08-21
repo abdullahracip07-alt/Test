@@ -1,0 +1,190 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Center navbar in mobile view */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #121212;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar container */
+.bottom-nav {
+  background: #1e1e1e;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 92%;
+  max-width: 400px;
+  border: 1px solid #333;
+  transition: all 0.3s ease;
+}
+
+/* Nav list */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Each icon */
+.nav-item {
+  text-align: center;
+}
+
+/* Nav item anchor styles for desktop (default to inline-flex for hover text later) */
+.nav-item a {
+  display: inline-block; /* Will override in desktop media query */
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Icon images */
+.nav-item img {
+  width: 26px;
+  height: 26px;
+  opacity: 0.7;
+  transition: 0.3s ease;
+  filter: brightness(1.8);
+}
+
+/* Active or hover state */
+.nav-item.active img,
+.nav-item:hover img {
+  opacity: 1;
+  transform: scale(1.15);
+  filter: brightness(2.5) drop-shadow(0 0 5px #00aaff);
+}
+
+/* Hide nav-text by default (mobile/medium) */
+.nav-text {
+  display: none;
+}
+
+/* Responsive: stick to bottom on wider screens (medium) */
+@media screen and (min-width: 768px) {
+  body {
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 18px 40px;
+    border-radius: 40px;
+    max-width: 400px;
+    width: 92%;
+  }
+
+  /* Keep nav menu horizontal */
+  .nav-menu {
+    flex-direction: row;
+  }
+
+  /* No nav-text displayed */
+  .nav-text {
+    display: none;
+  }
+}
+
+/* Large desktop: vertical left sidebar with hover expand and text labels */
+@media screen and (min-width: 1200px) {
+  body {
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 0;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    top: 50%;
+    left: 25px;
+    transform: translateY(-50%);
+    width: 72px;          /* Narrow width by default */
+    height: 400px;
+    padding: 30px 15px;
+    border-radius: 40px;
+    background: #1e1e1e;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: width 0.3s ease;
+  }
+
+  /* Expand sidebar on hover */
+  .bottom-nav:hover {
+    width: 240px; /* Expanded width to show text */
+  }
+
+  /* Nav list vertical layout */
+  .nav-menu {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    padding-top: 20px;
+  }
+
+  /* Nav item spacing */
+  .nav-item {
+    margin: 12px 0;
+  }
+
+  /* Nav links: icon + text horizontal */
+  .nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* Show nav-text only on hover */
+  .nav-text {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+  }
+
+  /* Reveal text on sidebar hover */
+  .bottom-nav:hover .nav-text {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Icon styles */
+  .nav-item img {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    filter: brightness(1.8);
+    transition: filter 0.3s ease;
+    transform: none; /* Reset scale on desktop */
+  }
+
+  .nav-item.active img,
+  .nav-item:hover img {
+    filter: brightness(2.5) drop-shadow(0 0 5px #00aaff);
+  }
+}
